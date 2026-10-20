@@ -7,7 +7,7 @@
     "dev": "node --env-file-if-exists=.env --watch index.js",
     "test": "node --test",
     "lint": "eslint .",
-    "build:ui": "npm --prefix frontend ci && npm --prefix frontend run build && node build-ui.js"
+    "build:ui": "npm --prefix frontend ci --include=dev && npm --prefix frontend run build && node build-ui.js"
   },
   "engines": {
     "node": ">=24"

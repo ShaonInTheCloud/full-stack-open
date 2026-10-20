@@ -1,31 +1,41 @@
+@base = http://localhost:3001
+@personId = REPLACE_WITH_ID_FROM_CREATE_OR_LIST_RESPONSE
+
 ### Read all entries
-GET http://localhost:3001/api/persons
+GET {{base}}/api/persons
 
 ### Count and server time
-GET http://localhost:3001/info
-
-### Read one entry
-GET http://localhost:3001/api/persons/1
+GET {{base}}/info
 
 ### Add an entry (repeat to test duplicate rejection)
-POST http://localhost:3001/api/persons
+POST {{base}}/api/persons
 Content-Type: application/json
 
-{
-  "name": "Grace Hopper",
-  "number": "555-1234"
-}
+{"name":"Grace Hopper","number":"040-1234567"}
+
+### Read one entry using its MongoDB ID
+GET {{base}}/api/persons/{{personId}}
+
+### Update the number
+PUT {{base}}/api/persons/{{personId}}
+Content-Type: application/json
+
+{"number":"09-7654321"}
+
+### Invalid number
+PUT {{base}}/api/persons/{{personId}}
+Content-Type: application/json
+
+{"number":"123"}
 
 ### Invalid entry
-POST http://localhost:3001/api/persons
+POST {{base}}/api/persons
 Content-Type: application/json
 
-{
-  "name": "Missing Number"
-}
+{"name":"Missing Number"}
 
-### Delete an entry (repeat to check idempotency)
-DELETE http://localhost:3001/api/persons/1
+### Delete an entry (a repeated request returns 404)
+DELETE {{base}}/api/persons/{{personId}}
 
-### Missing entry
-GET http://localhost:3001/api/persons/not-found
+### Malformed ID
+GET {{base}}/api/persons/not-an-id

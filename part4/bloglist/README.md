@@ -75,3 +75,5 @@ University of Helsinki, Full Stack Open, checked 20 October 2026:
 - [Token authentication](https://fullstackopen.com/en/part4/token_authentication/)
 
 Implementation and fictional test data were prepared for these exercises without using the course's model solutions.
+
+Verified on 20 October 2026: [GitHub Actions run 39385487673](https://github.com/ShaonInTheCloud/full-stack-open/actions/runs/39385487673) passed all builds, lint checks, UI checks and database tests. Part 3 passed 5 backend tests; Part 4 passed 27 tests.

@@ -73,3 +73,5 @@ The Phonebook is a course demo with no authentication. Use fictional contacts on
 - [Render Blueprint reference](https://render.com/docs/blueprint-spec)
 
 Requirements checked on 20 October 2026. The implementation does not use course model solutions.
+
+Verified on 20 October 2026: [GitHub Actions run 39385487673](https://github.com/ShaonInTheCloud/full-stack-open/actions/runs/39385487673) passed all builds, lint checks, UI checks and database tests. Part 3 passed 5 backend tests; Part 4 passed 27 tests.
