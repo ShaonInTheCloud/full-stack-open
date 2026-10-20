@@ -28,6 +28,13 @@ jobs:
       - name: Check Part 3 backend
         run: |
           npm --prefix part3/phonebook ci
+          npm --prefix part3/phonebook run build:ui
+          npm --prefix part3/phonebook/frontend run lint
           npm --prefix part3/phonebook run lint
           npm --prefix part3/phonebook test
+      - name: Check Part 4 Blog List
+        run: |
+          npm --prefix part4/bloglist ci
+          npm --prefix part4/bloglist run lint
+          npm --prefix part4/bloglist test
       - run: npm test

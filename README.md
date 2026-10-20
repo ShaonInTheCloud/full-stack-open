@@ -13,9 +13,11 @@ Coursework for Full Stack Open. Part 0 contains browser/server sequence diagrams
 
 Each folder contains the final version of its exercise series. The projects use the Vite React JavaScript scaffold. The anecdote texts are original practice examples rather than quotations from named authors.
 
-## Part 3 checkpoint
+## Parts 3 and 4
 
-The [Phonebook backend](part3/phonebook/README.md) implements the initial in-memory API. It is work in progress; later Part 3 exercises, deployment and database persistence are not completed.
+The [Part 3 Phonebook](part3/phonebook/README.md) has MongoDB persistence, validation and an integrated React frontend. Hosting configuration is prepared; Atlas setup and public deployment remain pending.
+
+The [Part 4 Blog List](part4/bloglist/README.md) implements the API through token authentication and creator-only deletion, with helper and database-backed API tests. Neither part has been submitted to the course portal.
 
 ## Run an app
 

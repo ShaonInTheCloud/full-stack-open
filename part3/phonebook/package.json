@@ -3,16 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node index.js",
-    "dev": "node --watch index.js",
+    "start": "node --env-file-if-exists=.env index.js",
+    "dev": "node --env-file-if-exists=.env --watch index.js",
     "test": "node --test",
-    "lint": "node --check app.js && node --check index.js"
+    "lint": "eslint .",
+    "build:ui": "npm --prefix frontend ci && npm --prefix frontend run build && node build-ui.js"
   },
   "engines": {
     "node": ">=24"
   },
   "dependencies": {
     "express": "^5.3.0",
+    "mongoose": "^8.24.5",
     "morgan": "^1.12.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.13.0",
+    "globals": "^17.13.0",
+    "mongodb-memory-server": "^11.3.0",
+    "supertest": "^7.3.1"
   }
 }

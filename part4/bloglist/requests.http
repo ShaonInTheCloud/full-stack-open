@@ -1,0 +1,38 @@
+@base = http://localhost:3003
+@token = REPLACE_WITH_LOGIN_RESPONSE_TOKEN
+@blogId = REPLACE_WITH_CREATED_BLOG_ID
+
+### Register a fictional practice user
+POST {{base}}/api/users
+Content-Type: application/json
+
+{"username":"practice-reader","name":"Practice Reader","password":"exercise-only-password"}
+
+### Login, then copy the returned token into the variable above
+POST {{base}}/api/login
+Content-Type: application/json
+
+{"username":"practice-reader","password":"exercise-only-password"}
+
+### List public blogs
+GET {{base}}/api/blogs
+
+### Create a blog
+POST {{base}}/api/blogs
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"title":"Practice blog","author":"Sample Author","url":"https://example.com","likes":0}
+
+### Update likes
+PUT {{base}}/api/blogs/{{blogId}}
+Content-Type: application/json
+
+{"likes":1}
+
+### Delete as the creator
+DELETE {{base}}/api/blogs/{{blogId}}
+Authorization: Bearer {{token}}
+
+### List users and their blogs
+GET {{base}}/api/users

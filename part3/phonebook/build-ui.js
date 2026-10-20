@@ -1,0 +1,5 @@
+const { cpSync, rmSync } = require('node:fs')
+const path = require('node:path')
+const target = path.join(__dirname, 'dist')
+rmSync(target, { recursive: true, force: true })
+cpSync(path.join(__dirname, 'frontend/dist'), target, { recursive: true })

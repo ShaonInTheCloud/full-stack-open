@@ -1,56 +1,46 @@
 const express = require('express')
 const morgan = require('morgan')
-
-const samplePersons = [
-  { id: '1', name: 'Arto Hellas', number: '040-123456' },
-  { id: '2', name: 'Ada Lovelace', number: '39-44-5323523' },
-  { id: '3', name: 'Dan Abramov', number: '12-43-234345' },
-  { id: '4', name: 'Mary Poppendieck', number: '39-23-6423122' },
-]
-
+const path = require('node:path')
+const Person = require('./models/person')
+const errorHandler = require('./middleware/errors')
 morgan.token('post-body', request => request.method === 'POST' ? JSON.stringify(request.body) : '')
-
 function createApp({ logStream } = {}) {
   const app = express()
-  let persons = samplePersons.map(person => ({ ...person }))
   app.use(express.json())
-  // Morgan's tiny fields, followed by the request body required in exercise 3.8.
-  app.use(morgan(':method :url :status :res[content-length] - :response-time ms :post-body',
-    logStream ? { stream: logStream } : {}))
-
-  app.get('/api/persons', (request, response) => response.json(persons))
-  app.get('/info', (request, response) => {
-    response.send(`<p>Phonebook has info for ${persons.length} people</p><p>${new Date().toString()}</p>`)
+  // Body logging is an exercise-only option; production logs omit contact data.
+  const format = process.env.LOG_REQUEST_BODIES === 'true'
+    ? ':method :url :status :res[content-length] - :response-time ms :post-body' : 'tiny'
+  app.use(morgan(format, logStream ? { stream: logStream } : {}))
+  app.use(express.static(path.join(__dirname, 'dist')))
+  app.get('/api/persons', async (_request, response) => response.json(await Person.find({})))
+  app.get('/info', async (_request, response) => {
+    const count = await Person.countDocuments({})
+    response.send(`<p>Phonebook has info for ${count} people</p><p>${new Date().toString()}</p>`)
   })
-  app.get('/api/persons/:id', (request, response) => {
-    const person = persons.find(person => person.id === request.params.id)
-    if (!person) return response.status(404).json({ error: 'person not found' })
+  app.get('/api/persons/:id', async (request, response) => {
+    const person = await Person.findById(request.params.id)
+    if (!person) return response.status(404).json({ error: 'Person not found' })
     response.json(person)
   })
-  app.delete('/api/persons/:id', (request, response) => {
-    persons = persons.filter(person => person.id !== request.params.id)
+  app.post('/api/persons', async (request, response) => {
+    const { name, number } = request.body || {}
+    if (typeof name !== 'string' || typeof number !== 'string') return response.status(400).json({ error: 'Name and number must be strings' })
+    response.status(201).json(await new Person({ name, number }).save())
+  })
+  app.put('/api/persons/:id', async (request, response) => {
+    const person = await Person.findById(request.params.id)
+    if (!person) return response.status(404).json({ error: 'Person not found' })
+    if (typeof request.body?.number !== 'string') return response.status(400).json({ error: 'Number must be a string' })
+    person.number = request.body.number
+    response.json(await person.save())
+  })
+  app.delete('/api/persons/:id', async (request, response) => {
+    const person = await Person.findByIdAndDelete(request.params.id)
+    if (!person) return response.status(404).json({ error: 'Person not found' })
     response.status(204).end()
   })
-  app.post('/api/persons', (request, response) => {
-    const name = typeof request.body?.name === 'string' ? request.body.name.trim() : ''
-    const number = typeof request.body?.number === 'string' ? request.body.number.trim() : ''
-    if (!name || !number) return response.status(400).json({ error: 'name and number are required' })
-    if (persons.some(person => person.name.toLowerCase() === name.toLowerCase())) {
-      return response.status(400).json({ error: 'name must be unique' })
-    }
-    let id
-    do { id = String(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)) }
-    while (persons.some(person => person.id === id))
-    const person = { id, name, number }
-    persons = persons.concat(person)
-    response.status(201).json(person)
-  })
-  app.use((request, response) => response.status(404).json({ error: 'unknown endpoint' }))
-  app.use((error, request, response, next) => {
-    if (error.type === 'entity.parse.failed') return response.status(400).json({ error: 'invalid JSON' })
-    next(error)
-  })
+  app.use((_request, response) => response.status(404).json({ error: 'Unknown endpoint' }))
+  app.use(errorHandler)
   return app
 }
-
 module.exports = { createApp }

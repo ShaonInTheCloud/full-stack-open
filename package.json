@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "test": "node check-apps.cjs && node check-part2.cjs"
+    "test": "node check-apps.cjs && node check-part2.cjs && node check-part3-ui.cjs"
   },
   "devDependencies": {
     "jsdom": "30.1.3",
