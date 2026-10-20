@@ -37,4 +37,16 @@ jobs:
           npm --prefix part4/bloglist ci
           npm --prefix part4/bloglist run lint
           npm --prefix part4/bloglist test
+      - name: Check Part 5 frontend
+        run: |
+          npm --prefix part5/bloglist ci
+          npm --prefix part5/bloglist run build
+          npm --prefix part5/bloglist run lint
+          npm --prefix part5/bloglist test
+      - name: Check Part 5 browser flows
+        run: |
+          npm --prefix part5/e2e ci
+          cd part5/e2e
+          npx playwright install --with-deps chromium
+          npm test
       - run: npm test

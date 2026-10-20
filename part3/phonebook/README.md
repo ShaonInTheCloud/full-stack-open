@@ -52,15 +52,16 @@ The repository's `check-part3-ui.cjs` checks that server validation messages app
 
 ## Deployment status and remaining verification
 
-No public URL is claimed yet. The repository's `render.yaml` prepares one Node service that builds and serves the frontend through Express. The plan is explicitly `free`; account availability and any provider billing prompts must be checked during setup. Importing or deploying it has not been performed.
+On 20 October 2026, the free Atlas cluster and the free Render Frankfurt service were created. The application user is restricted to `readWrite` on the `phonebook` database and the single course cluster. Atlas allows Render's two documented outbound ranges, not all internet addresses.
 
-To complete the hosted exercises:
+The allocated URL is https://shaon-fullstack-phonebook.onrender.com. **This is not a verified working deployment.** The browser masked the generated password during transfer. The unusable connection setting was removed; Render currently needs a valid `MONGODB_URI` entered privately. No credentials are stored in this repository.
 
-1. Configure an Atlas exercise database and a database user with access to that database.
-2. Set its URI privately in the hosting service and permit the host's required network addresses in Atlas.
-3. Deploy the backend using the prepared configuration.
-4. Verify create, read, update, delete and validation through the deployed UI, and run the matching requests in Postman or VS Code REST Client.
-5. Add the verified public URL here before claiming deployment exercises 3.10, 3.11 and 3.21. Atlas-specific exercise 3.12 also needs account verification.
+Remaining steps:
+
+1. Set a usable database password directly in Atlas and privately enter the URI in Render, with `/phonebook` as the database name.
+2. Redeploy and verify create, read, update, delete and validation through the public UI.
+3. Run the matching requests in Postman or VS Code REST Client and verify the Atlas CLI exercise.
+4. Only then claim deployment exercises 3.10, 3.11 and 3.21, and Atlas-specific exercise 3.12.
 
 The Phonebook is a course demo with no authentication. Use fictional contacts only. The Blog List in Part 4 introduces authenticated operations.
 

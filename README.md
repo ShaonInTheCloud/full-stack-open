@@ -15,7 +15,7 @@ Each folder contains the final version of its exercise series. The projects use 
 
 ## Parts 3 and 4
 
-The [Part 3 Phonebook](part3/phonebook/README.md) has MongoDB persistence, validation and an integrated React frontend. Hosting configuration is prepared; Atlas setup and public deployment remain pending.
+The [Part 3 Phonebook](part3/phonebook/README.md) has MongoDB persistence, validation and an integrated React frontend. Atlas and Render resources are created; a private database-secret handoff and live deployment checks remain pending.
 
 The [Part 4 Blog List](part4/bloglist/README.md) implements the API through token authentication and creator-only deletion, with helper and database-backed API tests. Neither part has been submitted to the course portal.
 
@@ -62,3 +62,7 @@ All three production builds and JavaScript checks passed on 20 October 2026. DOM
 These interaction checks use jsdom. A real-browser visual check remains pending because the test browser download failed in this environment.
 
 To repeat the checks, first run `npm ci` in each app folder. From this top-level folder, run `npm ci`, followed by `npm test`.
+
+## Part 5
+
+[Reading Room](part5/README.md) is the Blog List frontend, including routed views, persistent login, styled forms, notifications, likes and owner-only deletion. Component tests pass locally. The browser suite uses the actual Part 4 backend with an isolated disposable database. See the Part 5 README for verification status. No Part 5 submission or personal study hours are claimed.
