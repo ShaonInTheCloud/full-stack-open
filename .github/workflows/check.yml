@@ -18,4 +18,11 @@ jobs:
             npm --prefix "part1/$app" run build
             npm --prefix "part1/$app" run lint
           done
+      - name: Build and check Part 2
+        run: |
+          for app in courseinfo phonebook countries; do
+            npm --prefix "part2/$app" ci
+            npm --prefix "part2/$app" run build
+            npm --prefix "part2/$app" run lint
+          done
       - run: npm test

@@ -1,11 +1,14 @@
 # Full Stack Open
 
-Coursework for Full Stack Open. Part 0 contains browser/server sequence diagrams; Part 1 contains three standalone React applications.
+Coursework for Full Stack Open. Part 0 contains browser/server sequence diagrams; Parts 1 and 2 contain standalone React applications. See [Part 2 setup and references](part2/README.md).
 
 | Folder | Exercises | What is implemented |
 | --- | --- | --- |
 | `part1/courseinfo` | 1.1–1.5 | Course data, reusable components, props, objects and an array |
 | `part1/unicafe` | 1.6–1.11 | Feedback buttons, totals, average, positive percentage and a statistics table |
+| `part2/courseinfo` | 2.1–2.5 | Multiple courses, reusable modules and reduced exercise totals |
+| `part2/phonebook` | 2.6–2.17 | Persistent contacts, filtering, updates, deletion and notifications |
+| `part2/countries` | 2.18–2.20 | Country search, details and capital weather |
 | `part1/anecdotes` | 1.12–1.14 | Random selection, individual vote counts and the most-voted item |
 
 Each folder contains the final version of its exercise series. The projects use the Vite React JavaScript scaffold. The anecdote texts are original practice examples rather than quotations from named authors.
@@ -20,7 +23,7 @@ npm ci
 npm run dev
 ```
 
-Open the local address printed by Vite. To build the app, run `npm run build`. Run `npm run lint` to check the source. All three apps work independently.
+Open the local address printed by Vite. To build the app, run `npm run build`. Run `npm run lint` to check the source. Each app works independently. The Part 2 Phonebook also needs its local server; see its setup notes.
 
 ## Read the code
 
