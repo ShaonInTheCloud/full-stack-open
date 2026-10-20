@@ -52,7 +52,7 @@ Its harness starts a fresh `mongodb-memory-server` database and binds only to lo
 
 ## Verification status
 
-20 October 2026: frontend production build, ESLint and all 8 component tests pass locally. The sandbox cannot start MongoDB, so the database-backed browser suite runs in GitHub Actions. Its result is pending at this checkpoint. Course submission, study time, the personal authorship acknowledgement and exam completion are not claimed.
+20 October 2026: frontend production build, ESLint and all 8 component tests pass locally. The sandbox cannot start MongoDB, so the database-backed browser suite runs in GitHub Actions. [Run 39415682269](https://github.com/ShaonInTheCloud/full-stack-open/actions/runs/39415682269) passed all 5 Playwright browser tests against the actual Part 4 API, plus the full repository builds, lint checks and database tests. Course submission, study time, the personal authorship acknowledgement and exam completion are not claimed.
 
 ## References
 

@@ -65,4 +65,4 @@ To repeat the checks, first run `npm ci` in each app folder. From this top-level
 
 ## Part 5
 
-[Reading Room](part5/README.md) is the Blog List frontend, including routed views, persistent login, styled forms, notifications, likes and owner-only deletion. Component tests pass locally. The browser suite uses the actual Part 4 backend with an isolated disposable database. See the Part 5 README for verification status. No Part 5 submission or personal study hours are claimed.
+[Reading Room](part5/README.md) is the Blog List frontend, including routed views, persistent login, styled forms, notifications, likes and owner-only deletion. All 8 component tests and all 5 Playwright browser tests pass. The browser suite uses the actual Part 4 backend with an isolated disposable database. [Full CI verification](https://github.com/ShaonInTheCloud/full-stack-open/actions/runs/39415682269) passed on 20 October 2026. No Part 5 submission or personal study hours are claimed.
