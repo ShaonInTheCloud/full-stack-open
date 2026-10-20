@@ -1,0 +1,31 @@
+### Read all entries
+GET http://localhost:3001/api/persons
+
+### Count and server time
+GET http://localhost:3001/info
+
+### Read one entry
+GET http://localhost:3001/api/persons/1
+
+### Add an entry (repeat to test duplicate rejection)
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Grace Hopper",
+  "number": "555-1234"
+}
+
+### Invalid entry
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+  "name": "Missing Number"
+}
+
+### Delete an entry (repeat to check idempotency)
+DELETE http://localhost:3001/api/persons/1
+
+### Missing entry
+GET http://localhost:3001/api/persons/not-found

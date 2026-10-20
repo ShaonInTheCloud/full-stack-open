@@ -25,4 +25,9 @@ jobs:
             npm --prefix "part2/$app" run build
             npm --prefix "part2/$app" run lint
           done
+      - name: Check Part 3 backend
+        run: |
+          npm --prefix part3/phonebook ci
+          npm --prefix part3/phonebook run lint
+          npm --prefix part3/phonebook test
       - run: npm test
