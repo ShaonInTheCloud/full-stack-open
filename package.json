@@ -1,0 +1,12 @@
+{
+  "name": "full-stack-open-part-1",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "test": "node check-apps.cjs"
+  },
+  "devDependencies": {
+    "jsdom": "30.1.3",
+    "esbuild": "0.28.2"
+  }
+}
